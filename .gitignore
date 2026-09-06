@@ -39,7 +39,3 @@ Carthage/Build/
 # Word and Office lock files
 ~$*
 *.tmp
-
-# Dictionary source data. Remove these lines if you decide to commit CC-CEDICT.
-cedict_ts.u8
-cedict*.txt
