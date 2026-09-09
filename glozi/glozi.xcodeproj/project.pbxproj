@@ -6,8 +6,24 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B02FB066304F4F3400C56ABA /* glozi.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B02FB065304F4F3400C56ABA /* glozi.sqlite */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B02FB060304DCE0200C56ABA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B02FB02B304AE42D00C56ABA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B02FB032304AE42D00C56ABA;
+			remoteInfo = glozi;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		B02FB033304AE42D00C56ABA /* glozi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = glozi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B02FB05C304DCE0200C56ABA /* gloziTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = gloziTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B02FB065304F4F3400C56ABA /* glozi.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = glozi.sqlite; path = ../data/glozi.sqlite; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -29,10 +45,22 @@
 			path = glozi;
 			sourceTree = "<group>";
 		};
+		B02FB05D304DCE0200C56ABA /* gloziTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = gloziTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		B02FB030304AE42D00C56ABA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B02FB059304DCE0200C56ABA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -46,7 +74,9 @@
 			isa = PBXGroup;
 			children = (
 				B02FB035304AE42D00C56ABA /* glozi */,
+				B02FB05D304DCE0200C56ABA /* gloziTests */,
 				B02FB034304AE42D00C56ABA /* Products */,
+				B02FB065304F4F3400C56ABA /* glozi.sqlite */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				B02FB033304AE42D00C56ABA /* glozi.app */,
+				B02FB05C304DCE0200C56ABA /* gloziTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +114,29 @@
 			productReference = B02FB033304AE42D00C56ABA /* glozi.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B02FB05B304DCE0200C56ABA /* gloziTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B02FB064304DCE0200C56ABA /* Build configuration list for PBXNativeTarget "gloziTests" */;
+			buildPhases = (
+				B02FB058304DCE0200C56ABA /* Sources */,
+				B02FB059304DCE0200C56ABA /* Frameworks */,
+				B02FB05A304DCE0200C56ABA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B02FB061304DCE0200C56ABA /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B02FB05D304DCE0200C56ABA /* gloziTests */,
+			);
+			name = gloziTests;
+			packageProductDependencies = (
+			);
+			productName = gloziTests;
+			productReference = B02FB05C304DCE0200C56ABA /* gloziTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -95,6 +149,10 @@
 				TargetAttributes = {
 					B02FB032304AE42D00C56ABA = {
 						CreatedOnToolsVersion = 26.6;
+					};
+					B02FB05B304DCE0200C56ABA = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = B02FB032304AE42D00C56ABA;
 					};
 				};
 			};
@@ -113,12 +171,21 @@
 			projectRoot = "";
 			targets = (
 				B02FB032304AE42D00C56ABA /* glozi */,
+				B02FB05B304DCE0200C56ABA /* gloziTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B02FB031304AE42D00C56ABA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B02FB066304F4F3400C56ABA /* glozi.sqlite in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B02FB05A304DCE0200C56ABA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -135,7 +202,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B02FB058304DCE0200C56ABA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B02FB061304DCE0200C56ABA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B02FB032304AE42D00C56ABA /* glozi */;
+			targetProxy = B02FB060304DCE0200C56ABA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		B02FB047304AE42E00C56ABA /* Debug */ = {
@@ -317,6 +399,46 @@
 			};
 			name = Release;
 		};
+		B02FB062304DCE0200C56ABA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Jesslyn.gloziTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/glozi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/glozi";
+			};
+			name = Debug;
+		};
+		B02FB063304DCE0200C56ABA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Jesslyn.gloziTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/glozi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/glozi";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -334,6 +456,15 @@
 			buildConfigurations = (
 				B02FB047304AE42E00C56ABA /* Debug */,
 				B02FB048304AE42E00C56ABA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B02FB064304DCE0200C56ABA /* Build configuration list for PBXNativeTarget "gloziTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B02FB062304DCE0200C56ABA /* Debug */,
+				B02FB063304DCE0200C56ABA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
