@@ -165,7 +165,10 @@ final class ReaderViewController: UIViewController {
         let point = gesture.location(in: imageView)
 
         guard let hit = character(at: point) else {
+            // Nothing here. Clear the selection rather than leaving a card up
+            // describing a word the reader is no longer pointing at.
             highlightView.isHidden = true
+            dismissCard()
             return
         }
 
@@ -218,7 +221,6 @@ final class ReaderViewController: UIViewController {
 
         let card = DictionaryCardViewController()
         card.show(match: match, breakdown: breakdown)
-        card.presentationController?.delegate = self
         self.card = card
 
         // Give the page somewhere to go before asking it to move.
@@ -245,6 +247,34 @@ final class ReaderViewController: UIViewController {
         }
     }
 
+    private func dismissCard() {
+        guard let card, card.presentingViewController != nil else { return }
+        card.dismiss(animated: true)
+        releaseCard()
+    }
+
+    /// Undo everything showing the card did. Called both when the reader swipes
+    /// it away and when the app dismisses it, because the delegate callback only
+    /// fires for the first of those.
+    private func releaseCard() {
+        card = nil
+        cardInset = 0
+
+        UIView.animate(withDuration: 0.25) {
+            self.centreImage()
+            self.scrollView.setContentOffset(
+                CGPoint(x: self.scrollView.contentOffset.x,
+                        y: min(self.scrollView.contentOffset.y, self.furthestScroll)),
+                animated: false)
+        }
+    }
+
+    /// The largest content offset the page can legally sit at.
+    private var furthestScroll: CGFloat {
+        max(-scrollView.contentInset.top,
+            scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.bounds.height)
+    }
+
     /// The card must never cover the word it is describing. The highlight is
     /// scrolled into the strip of screen left above the sheet.
     private func scrollHighlightClearOfCard() {
@@ -261,10 +291,7 @@ final class ReaderViewController: UIViewController {
         // The furthest the page can scroll is its own height plus whatever
         // padding sits below it, less one screen.
         let lowest = -scrollView.contentInset.top
-        let highest = max(lowest,
-                          scrollView.contentSize.height
-                          + scrollView.contentInset.bottom
-                          - scrollView.bounds.height)
+        let highest = max(lowest, furthestScroll)
 
         scrollView.setContentOffset(
             CGPoint(x: scrollView.contentOffset.x, y: min(max(desired, lowest), highest)),
@@ -419,27 +446,14 @@ final class ReaderViewController: UIViewController {
     }
 }
 
-extension ReaderViewController: UIAdaptivePresentationControllerDelegate {
+extension ReaderViewController: UISheetPresentationControllerDelegate {
 
     /// Fires when the reader swipes the card down. Take the extra room back and
     /// return the page to where it sits normally, so dismissing the card undoes
     /// everything showing it did.
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        card = nil
-        cardInset = 0
         highlightView.isHidden = true
-
-        UIView.animate(withDuration: 0.25) {
-            self.centreImage()
-            self.scrollView.setContentOffset(
-                CGPoint(x: self.scrollView.contentOffset.x,
-                        y: min(self.scrollView.contentOffset.y,
-                               max(-self.scrollView.contentInset.top,
-                                   self.scrollView.contentSize.height
-                                   + self.scrollView.contentInset.bottom
-                                   - self.scrollView.bounds.height))),
-                animated: false)
-        }
+        releaseCard()
     }
 }
 

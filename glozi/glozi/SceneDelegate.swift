@@ -22,11 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // The root view controller is the top of the view controller tree.
         // Wrapped in a navigation controller so we get a nav bar and push navigation later.
         //
-        // Temporary: a bundled sample image stands in until the Photos picker
-        // exists, so the reader can be run and looked at.
-        let sample = UIImage(named: "sample") ?? UIImage()
-
-        window.rootViewController = UINavigationController(rootViewController: makeReader(with: sample))
+        window.rootViewController = UINavigationController(rootViewController: makeRootViewController())
 
         self.window = window
 
@@ -36,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     /// The dictionary is the one thing the app cannot run without, so build it
     /// here and show a plain message rather than crashing if it is missing.
-    private func makeReader(with image: UIImage) -> UIViewController {
+    private func makeRootViewController() -> UIViewController {
         guard let url = Bundle.main.url(forResource: "glozi", withExtension: "sqlite"),
               let database = DictionaryDatabase(url: url) else {
             return MessageViewController(
@@ -44,9 +40,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 message: "The bundled dictionary could not be opened, so lookups are unavailable.")
         }
 
-        return ReaderViewController(image: image,
-                                    recognizer: VisionTextRecognizer(),
-                                    lookup: WordLookup(dictionary: database))
+        return LibraryViewController(recognizer: VisionTextRecognizer(),
+                                     lookup: WordLookup(dictionary: database))
     }
 
     func sceneDidDisconnect(_ scene: UIScene) { }
