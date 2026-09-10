@@ -56,6 +56,12 @@ final class WordLookup {
                          entries: [])
     }
 
+    /// What each character of a word means on its own. Skips characters the
+    /// dictionary has never heard of rather than showing an empty row.
+    func characterBreakdown(of headword: String) -> [DictionaryEntry] {
+        headword.compactMap { dictionary.entries(for: String($0)).first }
+    }
+
     /// Where Apple thinks the word containing this character begins and ends.
     private func tokenSpan(in line: String, containing tapIndex: Int) -> Range<Int> {
         tokenizer.string = line
