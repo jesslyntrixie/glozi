@@ -105,7 +105,10 @@ final class LibraryViewController: UIViewController {
         navigationController?.pushViewController(AboutViewController(), animated: true)
     }
 
-    private func open(_ image: UIImage) {
+    /// Not private: the Action Button shortcut arrives through `SceneDelegate`
+    /// and opens its screenshot through here too, so both ways in end up in
+    /// exactly the same reader.
+    func open(_ image: UIImage) {
         let reader = ReaderViewController(image: image, recognizer: recognizer, lookup: lookup)
         navigationController?.pushViewController(reader, animated: true)
     }

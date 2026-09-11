@@ -35,7 +35,8 @@ final class ReaderViewController: UIViewController {
     private let imageMargin: CGFloat = 12
 
     init(image: UIImage, recognizer: TextRecognizing, lookup: WordLookup) {
-        self.image = image
+        // Straighten the pixels first. See `uprightPixels()` for why.
+        self.image = image.uprightPixels()
         self.recognizer = recognizer
         self.lookup = lookup
         super.init(nibName: nil, bundle: nil)
@@ -474,4 +475,29 @@ extension UISheetPresentationController.Detent.Identifier {
     /// The card's resting height. Named so it can be compared against, which is
     /// what keeps the page behind it undimmed at this size.
     static let cardHeight = Self("glozi.cardHeight")
+}
+
+extension UIImage {
+
+    /// The same picture, with its pixels actually stored upright.
+    ///
+    /// A photo from the camera is usually stored sideways, with a note saying
+    /// "rotate me 90 degrees when you show me" (`imageOrientation`). UIKit reads
+    /// the note, so `size` and the image view are upright. `cgImage` ignores the
+    /// note and hands Vision the raw sideways pixels. The boxes Vision returns
+    /// then describe a sideways page, and `pixelRect` lays them over an upright
+    /// one, so every tap lands on the wrong character.
+    ///
+    /// Screenshots are always stored upright, so they never showed this. Camera
+    /// photos picked from Photos do. Redrawing once here means everything after
+    /// this point, Vision included, sees the same upright pixels.
+    func uprightPixels() -> UIImage {
+        guard imageOrientation != .up else { return self }
+
+        let format = UIGraphicsImageRendererFormat()
+        format.scale = scale
+        return UIGraphicsImageRenderer(size: size, format: format).image { _ in
+            draw(in: CGRect(origin: .zero, size: size))
+        }
+    }
 }
