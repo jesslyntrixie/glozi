@@ -39,3 +39,14 @@ Carthage/Build/
 # Word and Office lock files
 ~$*
 *.tmp
+
+# Internal working files: planning docs, research, Claude outputs, post drafts,
+# raw recordings. Kept on this machine only, never pushed.
+_internal/
+
+# Raw screen recordings and tool output at the repo root
+/*.mov
+/glozi-demo-*.mp4
+
+# Stray backups
+*.bak
