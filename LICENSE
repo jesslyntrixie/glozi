@@ -1,0 +1,11 @@
+Copyright (c) 2026 Jesslyn Trixie Edvilie. All rights reserved.
+
+The source code, design and brand assets in this repository are published
+so they can be read and reviewed. They may not be copied, modified,
+redistributed or published as an app, in whole or in part, without written
+permission from the author.
+
+Exception: the dictionary data in data/ (cedict_ts.u8 and glozi.sqlite, which
+is derived from it) is CC-CEDICT, licensed under Creative Commons
+Attribution-ShareAlike 4.0 (https://creativecommons.org/licenses/by-sa/4.0/),
+and stays under that license. Source: https://cc-cedict.org

@@ -44,6 +44,9 @@ Carthage/Build/
 # raw recordings. Kept on this machine only, never pushed.
 _internal/
 
+# Files the Claude desktop app saves into the working folder
+Claude outputs/
+
 # Raw screen recordings and tool output at the repo root
 /*.mov
 /glozi-demo-*.mp4
